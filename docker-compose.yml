@@ -1,0 +1,17 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        RUBY_VERSION: 3.2
+    volumes:
+      - .:/writings
+    ports:
+      - "3000:3000"
+    command: ["bundle", "exec", "jekyll", "serve", "-l", "-P", "3000", "-H", "0.0.0.0"]
+    environment:
+      - JEKYLL_ENV=development
+
+volumes:
+  bundle-cache:
